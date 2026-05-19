@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sipena_orangtua/config/app_theme.dart';
-import 'package:sipena_orangtua/features/home/presentation/pages/home_page.dart';
+import 'package:sipena_orangtua/features/auth/presentation/pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: const HomePage(),
+      home: const LoginPage(),
     );
   }
 }

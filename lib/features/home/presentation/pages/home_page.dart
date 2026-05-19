@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sipena_orangtua/config/app_theme.dart';
-import '../widgets/dashboard_page.dart';
-import '../widgets/jurnal_page.dart';
-import '../widgets/progress_page.dart';
-import '../widgets/pengaturan_page.dart';
+import '../dashboard/dashboard_page.dart';
+import '../../progres/progress_page.dart';
+import '../pengaturan/pengaturan_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,20 +14,27 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
+  int _progressTab = 0;
 
-  final List<Widget> _pages = const [
-    DashboardPage(),
-    JurnalPage(),
-    ProgressPage(),
-    PengaturanPage(),
-  ];
+  void _navigateToProgress(int subIndex) {
+    setState(() {
+      _progressTab = subIndex;
+      _currentIndex = 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final pages = [
+      DashboardPage(onNavigateToProgress: _navigateToProgress),
+      ProgressPage(initialTab: _progressTab),
+      const PengaturanPage(),
+    ];
+
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: _pages,
+        children: pages,
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -48,9 +54,8 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildNavItem(0, Icons.home_outlined, Icons.home, 'Beranda'),
-                _buildNavItem(1, Icons.menu_book_outlined, Icons.menu_book, 'Jurnal'),
-                _buildNavItem(2, Icons.bar_chart_outlined, Icons.bar_chart, 'Progres Anak'),
-                _buildNavItem(3, Icons.settings_outlined, Icons.settings, 'Pengaturan'),
+                _buildNavItem(1, Icons.bar_chart_outlined, Icons.bar_chart, 'Progres Anak'),
+                _buildNavItem(2, Icons.settings_outlined, Icons.settings, 'Pengaturan'),
               ],
             ),
           ),

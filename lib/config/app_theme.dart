@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // === COLOR PALETTE ===
+  //pallet
   static const Color primaryBlue = Color(0xFF0B3C6E);
   static const Color primaryBlueDark = Color(0xFF082D52);
   static const Color primaryBlueLight = Color(0xFF1565C0);

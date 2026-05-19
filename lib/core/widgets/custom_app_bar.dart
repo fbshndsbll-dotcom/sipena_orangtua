@@ -4,13 +4,11 @@ import 'package:sipena_orangtua/config/app_theme.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final bool showMenuIcon;
   final List<Widget>? actions;
 
   const CustomAppBar({
     super.key,
     required this.title,
-    this.showMenuIcon = true,
     this.actions,
   });
 
@@ -19,50 +17,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: AppTheme.cardWhite,
       elevation: 0,
-      leading: showMenuIcon
-          ? Builder(
-              builder: (context) => IconButton(
-                icon: const Icon(Icons.menu, color: AppTheme.primaryBlue),
-                onPressed: () {},
-              ),
-            )
-          : null,
+      shadowColor: Colors.black12,
+      surfaceTintColor: Colors.transparent,
+      // Logo Sipena ditampilkan di title, rata kiri
+      titleSpacing: 16,
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Logo "Si" in blue, "pena" with "p" in orange
-          RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: 'Si',
-                  style: GoogleFonts.poppins(
-                    color: AppTheme.primaryBlue,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                TextSpan(
-                  text: 'p',
-                  style: GoogleFonts.poppins(
-                    color: AppTheme.accentOrange,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                TextSpan(
-                  text: 'ena',
-                  style: GoogleFonts.poppins(
-                    color: AppTheme.primaryBlue,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
+          // Logo icon bulat kecil
+          Image.asset(
+            'assets/images/logosipena.png',
+            width: 90,
+            height: 90,
+            fit: BoxFit.contain,
           ),
+          const SizedBox(width: 6),
         ],
       ),
+      // Judul halaman & actions di sebelah kanan
       actions: [
         if (title.isNotEmpty)
           Padding(
@@ -71,9 +43,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Text(
                 title,
                 style: GoogleFonts.poppins(
-                  color: AppTheme.textPrimary,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15,
+                  color: AppTheme.textSecondary,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
                 ),
               ),
             ),
